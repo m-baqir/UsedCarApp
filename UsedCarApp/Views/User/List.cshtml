@@ -1,0 +1,15 @@
+﻿@model IEnumerable<UsedCarApp.Models.UserDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Users</h2>
+
+@foreach (var user in Model)
+{
+    <h2><a href="/user/Details/@user.UserId">@user.UserName</a></h2>
+
+
+
+}
+

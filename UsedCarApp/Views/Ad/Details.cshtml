@@ -1,0 +1,10 @@
+﻿@model UsedCarApp.Models.AdDto
+@{
+    ViewBag.Title = "View";
+}
+<a href="/ad/list">Go back to Ad list</a>
+<h2>$@Model.Price</h2>
+<h3>@Model.CarYear @Model.CarMake @Model.CarModel</h3>
+<p>@Model.Images</p>
+<h4>@Model.Description</h4>
+

@@ -1,0 +1,12 @@
+﻿@model UsedCarApp.Models.UserDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of user</h2>
+<a href="/user/list">Go back to User list</a>
+<h2>@Model.UserId</h2>
+<h3>@Model.UserName</h3>
+<h3>@Model.Phone</h3>
+<h4>@Model.Email</h4>
+

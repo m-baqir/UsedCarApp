@@ -1,0 +1,13 @@
+﻿@model UsedCarApp.Models.UserDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this User?</h2>
+<a href="/user/List">Cancel</a>
+<h3>User ID: @Model.UserId</h3>
+<h3>@Model.UserName @Model.Phone @Model.Email</h3>
+<form action="/user/delete/@Model.UserId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>
+

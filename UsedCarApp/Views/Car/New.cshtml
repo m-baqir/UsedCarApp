@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create New Car</h2>
+<a href="/Car/List">Back to car list</a>
+<form action="/Car/Create" method="post">
+    <div>
+        <label>CarId:</label> <input name="CarId" type="number" />
+    </div>
+    <div>
+        <label>Car Year:</label> <input name="Year" type="number" />
+    </div>
+    <div>
+        <label>Car Make:</label> <input name="Make" type="text" />
+    </div>
+    <div>
+        <label>Car Model:</label> <input name="Model" type="text" />
+    </div>
+    <div>
+        <label>Car kilometers:</label> <input name="Km" type="number" />
+    </div>
+    <div>
+        <input type="submit" value="Create Car"/>
+    </div>
+</form>
+

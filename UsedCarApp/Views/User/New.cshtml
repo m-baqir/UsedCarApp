@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Create New User</h2>
+
+<form action="/user/Create" method="POST">
+
+    <div>
+        <label>UserId:</label> <input name="UserId" type="number" />
+    </div>
+    <div>
+        <label>Username:</label> <input name="Username" type="text" />
+    </div>
+    <div>
+        <label>Password:</label> <input name="Password" type="text" />
+    </div>
+    <div>
+        <label>Phone:</label> <input name="Phone" type="number" />
+    </div>
+    <div>
+        <label>Email:</label> <input name="Email" type="text" />
+    </div>
+    <div>
+        <input type="submit" value="Create New User" />
+    </div>
+</form>
+

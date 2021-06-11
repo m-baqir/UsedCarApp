@@ -1,0 +1,28 @@
+﻿@model UsedCarApp.Models.ViewModels.UpdateUser
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update User</h2>
+<form action="/user/Update/@Model.SelectedUser.UserId" method="POST">
+    <div>
+        <label>UserId:</label> <input type="number" name="UserId" value="@Model.SelectedUser.UserId" />
+    </div>
+    <div>
+        <label>Username:</label> <input type="text" name="Username" value="@Model.SelectedUser.UserName" />
+    </div>
+    <div>
+        <label>Password:</label> <input type="text" name="Password" value="@Model.SelectedUser.Password" />
+    </div>
+
+    <div>
+        <label>Phone:</label> <input type="number" name="Phone" value="@Model.SelectedUser.Phone" />
+    </div>
+    <div>
+        <label>Email:</label> <input type="text" name="Email" value="@Model.SelectedUser.Email" />
+    </div>
+    <div>
+        <input type="submit" value="Update Ad" />
+    </div>
+</form>
+

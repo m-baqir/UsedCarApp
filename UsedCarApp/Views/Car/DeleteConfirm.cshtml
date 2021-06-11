@@ -1,0 +1,12 @@
+﻿@model UsedCarApp.Models.Car
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this car?</h2>
+<a href="/car/List">Cancel</a>
+<h3>@Model.Year @Model.Make @Model.Model</h3>
+<h3>@Model.Km KM</h3>
+<form action="/ad/delete/@Model.CarId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>

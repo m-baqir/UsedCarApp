@@ -1,0 +1,15 @@
+﻿@model IEnumerable<UsedCarApp.Models.AdDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List of Ads</h2>
+<a href="/ad/create">Create New Ad</a>
+
+@foreach (var Ad in Model)
+{
+    <h2><a href="/Ad/Details/@Ad.AdId">@Ad.CarYear @Ad.CarMake @Ad.CarModel</a></h2>
+
+
+
+}

@@ -1,0 +1,13 @@
+﻿@model UsedCarApp.Models.AdDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this ad?</h2>
+<a href="/Ad/List">Cancel</a>
+<h3>@Model.CarYear @Model.CarMake @Model.CarModel</h3>
+<h3>$ @Model.Price</h3>
+<p>@Model.Description</p>
+<form action="/ad/delete/@Model.AdId" method="POST">
+    <input type="submit" value="Confirm Delete"/>
+</form>

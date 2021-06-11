@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Ad</h2>
+<form action="/Ad/Create" method="POST">
+    
+    <div>
+        <label>Description:</label> <input name="Description" type="text" />
+    </div>
+    <div>
+        <label>Price:</label> <input name="Price" type="number" />
+    </div>
+    <div>
+        <label>Images:</label> <input name="Images" type="text"/>
+    </div>
+    <div>
+        <label>CarId:</label> <input name="CarId" type="number"/>
+    </div>
+    <div>
+        <label>UserId:</label> <input name="UserId" type="number"/>
+    </div>
+    <div>
+        <input type="submit" value="Create Ad" />
+    </div>
+</form>
+

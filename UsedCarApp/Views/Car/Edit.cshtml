@@ -1,0 +1,28 @@
+﻿@model UsedCarApp.Models.ViewModels.UpdateCar
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Car</h2>
+<a href="/Car/list">Back to Car list</a>
+<form action="/car/Update/@Model.SelectedCar.CarId" method="POST">
+    <div>
+        <label>CarID:</label> <input type="number" name="CarId" value="@Model.SelectedCar.CarId" />
+    </div>
+    <div>
+        <label>Car Year:</label> <input type="number" name="Year" value="@Model.SelectedCar.Year" />
+    </div>
+    <div>
+        <label>Car Make:</label> <input type="text" name="Make" value="@Model.SelectedCar.Make" />
+    </div>
+    <div>
+        <label>Car Model:</label> <input type="text" name="Model" value="@Model.SelectedCar.Model" />
+    </div>
+    <div>
+        <label>Kilometers:</label> <input type="number" name="Km" value="@Model.SelectedCar.Km" />
+    </div>
+    <div>
+        <input type="submit" value="Update Ad" />
+    </div>
+</form>
+
