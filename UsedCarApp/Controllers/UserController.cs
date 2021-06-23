@@ -32,9 +32,17 @@ namespace UsedCarApp.Controllers
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
+            DetailsUser ViewModel = new DetailsUser();
+
             string url = "usersdata/finduser/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             UserDto selecteduser = response.Content.ReadAsAsync<UserDto>().Result;
+
+            ViewModel.SelectedUser = selecteduser;
+            url = "adsdata/listadsforusers/" + id;
+            IEnumerable<AdDto> RelatedAds = ;
+            ViewModel.RelatedAds = RelatedAds;
+
             return View(selecteduser);
         }
 

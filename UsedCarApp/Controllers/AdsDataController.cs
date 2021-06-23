@@ -29,7 +29,27 @@ namespace UsedCarApp.Controllers
                 CarYear = a.Car.Year,
                 CarMake = a.Car.Make,
                 CarModel = a.Car.Model,
-                Price = a.Price
+                Price = a.Price,
+                Km = a.Km
+            }));
+            return AdDtos;
+        }
+        [HttpGet]
+        // GET: api/AdsData/ListAds
+        public IEnumerable<AdDto> ListAdsforUsers(int id)
+        { //TODO: incorporate images in the database
+            List<Ad> Ads = db.Ads.ToList();
+            List<AdDto> AdDtos = new List<AdDto>();
+            Ads.ForEach(a => AdDtos.Add(new AdDto()
+            {
+                AdId = a.AdId,
+                Description = a.Description,
+                Images = a.Images,
+                CarYear = a.Car.Year,
+                CarMake = a.Car.Make,
+                CarModel = a.Car.Model,
+                Price = a.Price,
+                Km = a.Km
             }));
             return AdDtos;
         }
@@ -47,7 +67,8 @@ namespace UsedCarApp.Controllers
                 CarYear = ad.Car.Year,
                 CarMake = ad.Car.Make,
                 CarModel = ad.Car.Model,
-                Price = ad.Price
+                Price = ad.Price,
+                Km = ad.Km
             };
             if (ad == null)
             {

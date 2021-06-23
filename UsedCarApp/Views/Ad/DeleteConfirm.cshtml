@@ -7,6 +7,7 @@
 <a href="/Ad/List">Cancel</a>
 <h3>@Model.CarYear @Model.CarMake @Model.CarModel</h3>
 <h3>$ @Model.Price</h3>
+<p>@Model.Km</p>
 <p>@Model.Description</p>
 <form action="/ad/delete/@Model.AdId" method="POST">
     <input type="submit" value="Confirm Delete"/>

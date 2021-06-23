@@ -6,16 +6,25 @@
 <h2>Update Ad</h2>
 <form action="/Ad/Update/@Model.SelectedAd.AdId" method="POST">
     <div>
-        <label>AdId:</label> <input type="number" name="AdId" value="@Model.SelectedAd.AdId"/>
+        <label>AdId:</label> <input type="number" name="AdId" value="@Model.SelectedAd.AdId" />
     </div>
     <div>
         <label>Price:</label> <input type="number" name="Price" value="@Model.SelectedAd.Price" />
     </div>
     <div>
-        <label>Car ID:</label> <input type="number" name="CarId" value="@Model.SelectedAd.CarId"/>
-        <label>User ID:</label> <input type="number" name="UserId" value="@Model.SelectedAd.UserId"/>
+        <label>Km:</label> <input type="number" name="Km" value="@Model.SelectedAd.Km" />
     </div>
-    
+    <div>
+        <label>Car:</label>
+        <select name="CarId">
+            @foreach (var cars in Model.CarOptions)
+            {
+                <option>@cars.Year @cars.Make @cars.Model</option>
+            }
+        </select>
+        <label>User ID:</label> <input type="number" name="UserId" value="@Model.SelectedAd.UserId" />
+    </div>
+
     <div>
         <label>Images:</label> <input type="text" name="Images" value="@Model.SelectedAd.Images" />
     </div>

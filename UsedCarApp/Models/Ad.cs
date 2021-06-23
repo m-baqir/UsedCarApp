@@ -14,6 +14,7 @@ namespace UsedCarApp.Models
         public string Description { get; set; }
         public string Images { get; set; }
         public float Price { get; set; }
+        public int Km { get; set; }
 
         //An ad has one car in it but a car can have many ads
         [ForeignKey("Car")]
@@ -36,5 +37,6 @@ namespace UsedCarApp.Models
         public string CarModel { get; set; }
         public int CarYear { get; set; }        
         public float Price { get; set; }
+        public int Km { get; set; }
     }
 }

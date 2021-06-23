@@ -14,9 +14,9 @@ namespace UsedCarApp.Models
         public int Year { get; set; }
         public string Make { get; set; }
         public string Model { get; set; }
-        //Km is kilometers
-        public int Km { get; set; }
     }
+
+    
 
 
 }

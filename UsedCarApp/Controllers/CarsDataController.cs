@@ -28,7 +28,7 @@ namespace UsedCarApp.Controllers
                 Year = a.Year,
                 Make = a.Make,
                 Model = a.Model,
-                Km = a.Km
+                
             }));
             return Cars;
         }

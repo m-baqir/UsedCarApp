@@ -33,10 +33,13 @@ namespace UsedCarApp.Controllers
         // GET: Ad/Details/5
         public ActionResult Details(int id)
         {
+            //DetailsAd ViewModel = new DetailsAd();
+
             string url = "adsdata/findad/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-            AdDto selectedad = response.Content.ReadAsAsync<AdDto>().Result;
-            return View(selectedad);
+            AdDto SelectedAd = response.Content.ReadAsAsync<AdDto>().Result;
+            //ViewModel.SelectedAd = SelectedAd;
+            return View(SelectedAd);
         }
 
         public ActionResult Error()
@@ -47,7 +50,15 @@ namespace UsedCarApp.Controllers
         // GET: Ad/Create
         public ActionResult New()
         {
-            return View();
+            string url = "carsdata/listcars";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<Car> carsoptions = response.Content.ReadAsAsync<IEnumerable<Car>>().Result;
+            //figure out how to return 2 lists to a view
+            string url2 = "usersdata/listusers";
+            HttpResponseMessage response2 = client.GetAsync(url2).Result;
+            IEnumerable<User> useroptions = response2.Content.ReadAsAsync<IEnumerable<User>>().Result;
+
+            return View(carsoptions);
         }
 
         // POST: Ad/Create
@@ -75,6 +86,7 @@ namespace UsedCarApp.Controllers
                 
         }
 
+        [HttpGet]
         // GET: Ad/Edit/5
         public ActionResult Edit(int id)
         {
@@ -84,6 +96,14 @@ namespace UsedCarApp.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
             Ad selectedad = response.Content.ReadAsAsync<Ad>().Result;
             ViewModel.SelectedAd = selectedad;
+            
+            //list of all cars to choose from
+            //this is giving me a headache. keeps giving an error of foreign key constraint when the db is setup properly.
+            url = "carsdata/listcars";
+            response = client.GetAsync(url).Result;
+            IEnumerable<Car> CarOptions = response.Content.ReadAsAsync<IEnumerable<Car>>().Result;
+            ViewModel.CarOptions = CarOptions;
+
             return View(ViewModel);
         }
 

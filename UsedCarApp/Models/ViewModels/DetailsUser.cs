@@ -5,10 +5,10 @@ using System.Web;
 
 namespace UsedCarApp.Models.ViewModels
 {
-    public class UpdateAd
+    public class DetailsUser
     {
-        public Ad SelectedAd { get; set; }
+        public UserDto SelectedUser { get; set; }
 
-        public IEnumerable<Car> CarOptions { get; set; }
+        public IEnumerable<AdDto> RelatedAds { get; set; }
     }
 }
