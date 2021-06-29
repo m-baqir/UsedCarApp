@@ -1,13 +1,27 @@
-﻿@model UsedCarApp.Models.AdDto
+﻿@model UsedCarApp.Models.ViewModels.DetailsAd
 @{
     ViewBag.Title = "View";
 }
-<a href="ad/edit/@Model.AdId">Update</a>
+<a class="createnew" href="/ad/edit/@Model.SelectedAd.AdId">Update</a>
+<a class="deleteconfirm" href="/ad/deleteconfirm/@Model.SelectedAd.AdId">Delete</a>
 
-<a href="/ad/list">Go back to Ad list</a>
-<h2>$@Model.Price</h2>
-<h3>@Model.CarYear @Model.CarMake @Model.CarModel</h3>
-<h4>@Model.Km</h4>
-<p>@Model.Images</p>
-<h4>@Model.Description</h4>
+<a class="createnew" href="/ad/list">Go back to Ad list</a>
+<h2>$@Model.SelectedAd.Price</h2>
+<h3>@Model.SelectedAd.CarYear @Model.SelectedAd.CarMake @Model.SelectedAd.CarModel</h3>
+<h4>@Model.SelectedAd.Km KM</h4>
+<div>
+    @{
+        string imageurl = "/Content/Images/default.png";
+        if (Model.SelectedAd.AdHasPic)
+        {
+            imageurl = "/Content/Images/" + Model.SelectedAd.AdId + "." + Model.SelectedAd.Images;
+        }
+    }
+    <div><img style="display:block; max-width:100%;" alt="@Model.SelectedAd.CarYear @Model.SelectedAd.CarMake @Model.SelectedAd.CarModel" src="@imageurl" /></div>
+</div>
+<h4>@Model.SelectedAd.Description</h4>
+<h3>Ad Posted by:</h3>
+<div class="userid">
+    <a href="/user/details/@Model.SelectedAd.UserId"><strong>User ID: </strong>@Model.SelectedAd.UserId</a>
+</div>
 

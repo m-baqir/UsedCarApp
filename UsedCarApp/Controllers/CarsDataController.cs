@@ -15,7 +15,10 @@ namespace UsedCarApp.Controllers
     public class CarsDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        /// <summary>
+        /// lists all car in the db
+        /// </summary>
+        /// <returns>ienumerable list of car objects</returns>
         // GET: api/CarsData/ListCars
         [HttpGet]
         public IEnumerable <Car> ListCars()
@@ -27,12 +30,16 @@ namespace UsedCarApp.Controllers
                 CarId = a.CarId,
                 Year = a.Year,
                 Make = a.Make,
-                Model = a.Model,
+                Model = a.Model
                 
             }));
             return Cars;
         }
-
+        /// <summary>
+        /// presents details for a particular car given its id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>car object</returns>
         // GET: api/CarsData/Findcar/5
         [ResponseType(typeof(Car))]
         [HttpGet]
@@ -47,7 +54,12 @@ namespace UsedCarApp.Controllers
 
             return Ok(car);
         }
-
+        /// <summary>
+        /// updates a particular car given its id and car object
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="car"></param>
+        /// <returns></returns>
         // Post: api/CarsData/5
         [ResponseType(typeof(void))]
         [HttpPost]
@@ -83,7 +95,11 @@ namespace UsedCarApp.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        /// <summary>
+        /// creates a new car in the db
+        /// </summary>
+        /// <param name="car"></param>
+        /// <returns></returns>
         // POST: api/CarsData/AddCar
         [ResponseType(typeof(Car))]
         [HttpPost]
@@ -99,7 +115,11 @@ namespace UsedCarApp.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = car.CarId }, car);
         }
-
+        /// <summary>
+        /// deletes a car in the db
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // DELETE: api/CarsData/DeleteCar/5
         [ResponseType(typeof(Car))]
         [HttpPost]

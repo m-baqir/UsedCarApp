@@ -20,6 +20,10 @@ namespace UsedCarApp.Controllers
             client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44387/api/");
         }
+        /// <summary>
+        /// lists all users in the db
+        /// </summary>
+        /// <returns>returns ienumerable list of userdto</returns>
         // GET: User/List
         public ActionResult List()
         {
@@ -28,7 +32,11 @@ namespace UsedCarApp.Controllers
             IEnumerable<UserDto> users = response.Content.ReadAsAsync<IEnumerable<UserDto>>().Result;
             return View(users);
         }
-
+        /// <summary>
+        /// returns details for a particular user given its userid
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>userdto object</returns>
         // GET: User/Details/5
         public ActionResult Details(int id)
         {
@@ -37,26 +45,37 @@ namespace UsedCarApp.Controllers
             string url = "usersdata/finduser/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             UserDto selecteduser = response.Content.ReadAsAsync<UserDto>().Result;
-
             ViewModel.SelectedUser = selecteduser;
+
             url = "adsdata/listadsforusers/" + id;
-            IEnumerable<AdDto> RelatedAds = ;
+            response = client.GetAsync(url).Result;
+            IEnumerable<AdDto> RelatedAds = response.Content.ReadAsAsync<IEnumerable<AdDto>>().Result;
             ViewModel.RelatedAds = RelatedAds;
 
-            return View(selecteduser);
+            return View(ViewModel);
         }
-
+        /// <summary>
+        /// a blank error controller in case of code malfunction
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Error()
         {
             return View();
         }
-
+        /// <summary>
+        /// presents empty form fields to create a new user in the db
+        /// </summary>
+        /// <returns></returns>
         // GET: User/Create
         public ActionResult New()
         {
             return View();
         }
-
+        /// <summary>
+        /// creates a new user in the db given a user object
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         // POST: User/Create
         [HttpPost]
         public ActionResult Create(User user)
@@ -80,7 +99,11 @@ namespace UsedCarApp.Controllers
                 return RedirectToAction("Error");
             }
         }
-
+        /// <summary>
+        /// presents form fields with user information to be edited in the db given user id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: User/Edit/5
         public ActionResult Edit(int id)
         {
@@ -92,7 +115,12 @@ namespace UsedCarApp.Controllers
             ViewModel.SelectedUser = selecteduser;
             return View(ViewModel);
         }
-
+        /// <summary>
+        /// updates user information in the db
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <returns>executes the update command in the db</returns>
         // POST: User/Update/5
         [HttpPost]
         public ActionResult Update(int id, User user)
@@ -115,7 +143,11 @@ namespace UsedCarApp.Controllers
                 return RedirectToAction("Error");
             }
         }
-
+        /// <summary>
+        /// warning page to confirm deletion before going ahead with deletion
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>user information given user id</returns>
         // GET: User/DeleteConfirm/5
         public ActionResult DeleteConfirm(int id)
         {
@@ -124,7 +156,11 @@ namespace UsedCarApp.Controllers
             UserDto selecteduser = response.Content.ReadAsAsync<UserDto>().Result;
             return View(selecteduser);
         }
-
+        /// <summary>
+        /// deletes a user in the db given user id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>executes delete command in the db</returns>
         // POST: User/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)

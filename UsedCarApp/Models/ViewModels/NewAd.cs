@@ -5,9 +5,9 @@ using System.Web;
 
 namespace UsedCarApp.Models.ViewModels
 {
-    public class DetailsCar
+    public class NewAd
     {
-        public Car SelectedCar { get; set; }
-        public IEnumerable<AdDto> RelatedAd { get; set; }
+        public IEnumerable<Car> AllCars { get; set; }
+        public IEnumerable<UserDto> AllUsers { get; set; }
     }
 }

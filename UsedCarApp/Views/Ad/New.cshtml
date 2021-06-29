@@ -1,37 +1,42 @@
-﻿@model IEnumerable<UsedCarApp.Models.Car>
+﻿@model UsedCarApp.Models.ViewModels.NewAd
 @{
     ViewBag.Title = "Create";
 }
-
-<h2>Create Ad</h2>
+<a class="createnew" href="/ad/list">Back to Ad list</a>
 <form action="/Ad/Create" method="POST">
-
-    <div>
-        <label>Description:</label> <input name="Description" type="text" />
-    </div>
-    <div>
-        <label>Price:</label> <input name="Price" type="number" />
-    </div>
-    <div>
-        <label>Images:</label> <input name="Images" type="text" />
-    </div>
-    <div>
-        <label>Car:</label>
-        <select name="CarId">
-            @foreach (var cars in Model)
-            {
-                <option>@cars.Year @cars.Make @cars.Model</option>
-            }
-        </select>
-    </div>
-    <div>
-        <label>Km:</label> <input type="number" name="Km" />
-    </div>
-    <div>
-        <label>UserId:</label> <input name="UserId" type="number" />
-    </div>
-    <div>
-        <input type="submit" value="Create Ad" />
-    </div>
+    <fieldset>
+        <legend>Create New Ad</legend>
+        <div>
+            <label>Description:</label> <input name="Description" type="text" />
+        </div>
+        <div>
+            <label>Price:</label> <input name="Price" type="number" />
+        </div>
+        
+        <div>
+            <label>Car:</label>
+            <select name="CarId">
+                @foreach (var cars in Model.AllCars)
+                {
+                    <option value="@cars.CarId">@cars.Year @cars.Make @cars.Model</option>
+                }
+            </select>
+        </div>
+        <div>
+            <label>Km:</label> <input type="number" name="Km" />
+        </div>
+        <div>
+            <label>User:</label>
+            <select name="UserId">
+                @foreach (var users in Model.AllUsers)
+                {
+                    <option value="@users.UserId">@users.UserName</option>
+                }
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Create Ad" />
+        </div>
+    </fieldset>
 </form>
 

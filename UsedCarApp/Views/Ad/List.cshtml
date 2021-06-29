@@ -3,13 +3,13 @@
     ViewBag.Title = "List";
 }
 
-<h2>List of Ads</h2>
-<a href="/ad/new">Create New Ad</a>
+<h1>Current Ads</h1>
+<a class="createnew" href="/ad/new">Create New Ad</a>
+<div class="linklist">
+    @foreach (var Ad in Model)
+    {
 
-@foreach (var Ad in Model)
-{
-    <h2><a href="/Ad/Details/@Ad.AdId">@Ad.CarYear @Ad.CarMake @Ad.CarModel @Ad.Km</a></h2>
+        <a href="/Ad/Details/@Ad.AdId">@Ad.CarYear @Ad.CarMake @Ad.CarModel</a>
 
-
-
-}
+    }
+</div>

@@ -3,15 +3,13 @@
     ViewBag.Title = "List";
 }
 
-<h2>List of Users</h2>
+<h1>List of Users</h1>
 
-<a href="/user/new">Create New User</a>
+<a class="createnew" href="/user/new">Create New User</a>
+<div class="linklist">
+    @foreach (var user in Model)
+    {
+        <a href="/user/Details/@user.UserId">@user.UserName</a>
 
-@foreach (var user in Model)
-{
-    <h2><a href="/user/Details/@user.UserId">@user.UserName</a></h2>
-
-
-
-}
-
+    }
+</div>

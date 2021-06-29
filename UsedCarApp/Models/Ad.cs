@@ -13,6 +13,7 @@ namespace UsedCarApp.Models
         public int AdId { get; set; }
         public string Description { get; set; }
         public string Images { get; set; }
+        public bool AdHasPic { get; set; }
         public float Price { get; set; }
         public int Km { get; set; }
 
@@ -33,10 +34,13 @@ namespace UsedCarApp.Models
         public int AdId { get; set; }
         public string Description { get; set; }
         public string Images { get; set; }
+        public bool AdHasPic { get; set; }
         public string CarMake { get; set; }
         public string CarModel { get; set; }
         public int CarYear { get; set; }        
         public float Price { get; set; }
         public int Km { get; set; }
+        public int UserId { get; set; }
+        public int CarId { get; set; }
     }
 }

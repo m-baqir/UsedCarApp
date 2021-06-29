@@ -4,8 +4,8 @@
 }
 
 <h2>Update Ad</h2>
-<form action="/Ad/Update/@Model.SelectedAd.AdId" method="POST">
-    <div>
+<form action="/Ad/Update/@Model.SelectedAd.AdId" method="POST" enctype = "multipart/form-data"  >
+    <div style="display:none" >
         <label>AdId:</label> <input type="number" name="AdId" value="@Model.SelectedAd.AdId" />
     </div>
     <div>
@@ -17,16 +17,32 @@
     <div>
         <label>Car:</label>
         <select name="CarId">
-            @foreach (var cars in Model.CarOptions)
+            @foreach (var car in Model.CarOptions)
             {
-                <option>@cars.Year @cars.Make @cars.Model</option>
+                var selected2 = "";
+                if (car.CarId == Model.SelectedAd.CarId)
+                {
+                    selected2 = "selected";
+                }
+                <option value="@car.CarId" @selected2>@car.Year @car.Make @car.Model</option>
             }
         </select>
-        <label>User ID:</label> <input type="number" name="UserId" value="@Model.SelectedAd.UserId" />
+        <label>User:</label>
+        <select name="UserId">
+            @foreach (var user in Model.UserOptions)
+            {
+                var selected = "";
+                if (user.UserId == Model.SelectedAd.UserId)
+                {
+                    selected = "selected";
+                }
+                <option value="@user.UserId" @selected>@user.UserName</option>
+            }
+        </select>
     </div>
 
     <div>
-        <label>Images:</label> <input type="text" name="Images" value="@Model.SelectedAd.Images" />
+        <input type="file" name="AdPic"/>
     </div>
     <div>
         <label>Description:</label> <input type="text" name="Description" value="@Model.SelectedAd.Description" />

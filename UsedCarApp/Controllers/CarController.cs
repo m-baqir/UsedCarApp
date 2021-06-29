@@ -21,6 +21,10 @@ namespace UsedCarApp.Controllers
             client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44387/api/");
         }
+        /// <summary>
+        /// lists all cars in the db
+        /// </summary>
+        /// <returns></returns>
         // GET: Car/list
         public ActionResult List()
         {
@@ -29,29 +33,53 @@ namespace UsedCarApp.Controllers
             IEnumerable<Car> cars = response.Content.ReadAsAsync<IEnumerable<Car>>().Result;
             return View(cars);
         }
-
+        /// <summary>
+        /// presents the details of a particular ad given its id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: Car/Details/5
         public ActionResult Details(int id)
         {
+            DetailsCar ViewModel = new DetailsCar();
+
             string url = "carsdata/findcar/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             Car selectedcar = response.Content.ReadAsAsync<Car>().Result;
-            
+            ViewModel.SelectedCar = selectedcar;
             Debug.WriteLine(response.StatusCode);
             Debug.WriteLine(selectedcar);
-            return View(selectedcar);
+
+            url = "adsdata/listadsforcar/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<AdDto> RelatedAd = response.Content.ReadAsAsync<IEnumerable<AdDto>>().Result;
+            ViewModel.RelatedAd = RelatedAd;
+
+
+            return View(ViewModel);
         }
+        /// <summary>
+        /// a blank error method that works in case of code malfunction
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Error()
         {
             return View();
         }
-
+        /// <summary>
+        /// presents blank form elements to create a new car
+        /// </summary>
+        /// <returns></returns>
         // GET: Car/Create
         public ActionResult New()
         {
             return View();
         }
-
+        /// <summary>
+        /// creates a new car in the db, takes a Car object
+        /// </summary>
+        /// <param name="Car"></param>
+        /// <returns></returns>
         // POST: Car/Create
         [HttpPost]
         public ActionResult Create(Car Car)
@@ -73,7 +101,11 @@ namespace UsedCarApp.Controllers
                 return RedirectToAction("Error");
             }
         }
-
+        /// <summary>
+        /// presents car information in form elements to update car information
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: Car/Edit/5
         public ActionResult Edit(int id)
         {
@@ -85,7 +117,12 @@ namespace UsedCarApp.Controllers
             ViewModel.SelectedCar = selectedcar;
             return View(ViewModel);
         }
-
+        /// <summary>
+        /// updates a particular car given an id and car object
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="car"></param>
+        /// <returns>updated car information</returns>
         // POST: Car/Edit/5
         [HttpPost]
         public ActionResult Update(int id, Car car)
@@ -108,7 +145,11 @@ namespace UsedCarApp.Controllers
                 return RedirectToAction("Error");
             }
         }
-
+        /// <summary>
+        /// a warning page before deletion. presents the details of the particular car
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: Car/Delete/5
         public ActionResult DeleteConfirm(int id)
         {
@@ -117,7 +158,11 @@ namespace UsedCarApp.Controllers
             Car selectedcar = response.Content.ReadAsAsync<Car>().Result;
             return View(selectedcar);
         }
-
+        /// <summary>
+        /// deletes a particular car given its id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // POST: Car/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)

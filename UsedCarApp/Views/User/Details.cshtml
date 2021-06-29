@@ -1,12 +1,21 @@
-﻿@model UsedCarApp.Models.UserDto
+﻿@model UsedCarApp.Models.ViewModels.DetailsUser
 @{
     ViewBag.Title = "Details";
 }
 
+<a class="createnew" href="/user/edit/@Model.SelectedUser.UserId">Update</a>
+<a class="createnew" href="/user/list">Go back to User list</a>
+<a class="deleteconfirm" href="/user/deleteconfirm/@Model.SelectedUser.UserId">Delete this User</a>
 <h2>Details of user</h2>
-<a href="/user/list">Go back to User list</a>
-<h2>@Model.UserId</h2>
-<h3>@Model.UserName</h3>
-<h3>@Model.Phone</h3>
-<h4>@Model.Email</h4>
+<h3>Username: @Model.SelectedUser.UserName</h3>
+<h3>Phone: @Model.SelectedUser.Phone</h3>
+<h3>Email: @Model.SelectedUser.Email</h3>
+<h3>Ads related to this User:</h3>
+<div class="linklist">    
+    @foreach (var ad in Model.RelatedAds)
+    {
+        <a href="/ad/Details/@ad.AdId">@ad.CarYear @ad.CarMake @ad.CarModel</a>
+
+    }
+</div>
 

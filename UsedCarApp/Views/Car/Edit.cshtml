@@ -2,9 +2,9 @@
 @{
     ViewBag.Title = "Edit";
 }
-
+<a class="createnew" href="/Car/list">Back to Car list</a>
 <h2>Update Car</h2>
-<a href="/Car/list">Back to Car list</a>
+
 <form action="/car/Update/@Model.SelectedCar.CarId" method="POST">
     <div>
         <label>CarID:</label> <input type="number" name="CarId" value="@Model.SelectedCar.CarId" />

@@ -3,11 +3,11 @@
     ViewBag.Title = "List";
 }
 
-<h2>List of Cars</h2>
-<a href="/Car/new">Add new car</a>
-
-@foreach (var Car in Model)
-{
-    <h2><a href="/Car/Details/@Car.CarId">@Car.Year @Car.Make @Car.Model</a></h2>
-}
-
+<h1>List of Cars</h1>
+<a class="createnew" href="/Car/new">Add new car</a>
+<div class="linklist">
+    @foreach (var Car in Model)
+    {
+       <a href="/Car/Details/@Car.CarId">@Car.Year @Car.Make @Car.Model</a>
+    }
+</div>

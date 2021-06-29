@@ -10,5 +10,7 @@ namespace UsedCarApp.Models.ViewModels
         public Ad SelectedAd { get; set; }
 
         public IEnumerable<Car> CarOptions { get; set; }
+
+        public IEnumerable<User> UserOptions { get; set; }
     }
 }

@@ -15,7 +15,10 @@ namespace UsedCarApp.Controllers
     public class UsersDataController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        /// <summary>
+        /// returns all users in the db
+        /// </summary>
+        /// <returns>returns a list of userdto objects</returns>
         // GET: api/UsersData/ListUsers
         [HttpGet]
         public IEnumerable<UserDto> ListUsers()
@@ -32,7 +35,13 @@ namespace UsedCarApp.Controllers
 
             return UserDtos;
         }
+        
 
+        /// <summary>
+        /// presents details for a particular user given its id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET: api/UsersData/FindUser/5
         [ResponseType(typeof(User))]
         [HttpGet]
@@ -54,7 +63,12 @@ namespace UsedCarApp.Controllers
 
             return Ok(userDto);
         }
-
+        /// <summary>
+        /// updates a particular user gives its id and particular user object
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="user"></param>
+        /// <returns></returns>
         // PosT: api/UsersData/5
         [ResponseType(typeof(void))]
         [HttpPost]
@@ -90,7 +104,11 @@ namespace UsedCarApp.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        /// <summary>
+        /// creates a new user in the db
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         // POST: api/UsersData
         [ResponseType(typeof(User))]
         [HttpPost]
@@ -106,7 +124,11 @@ namespace UsedCarApp.Controllers
 
             return CreatedAtRoute("DefaultApi", new { id = user.UserId }, user);
         }
-
+        /// <summary>
+        /// deletes a particular user given its id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // DELETE: api/UsersData/5
         [ResponseType(typeof(User))]
         [HttpPost]
