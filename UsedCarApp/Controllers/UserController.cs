@@ -10,7 +10,7 @@ using System.Web.Script.Serialization;
 using System.Diagnostics;
 
 namespace UsedCarApp.Controllers
-{//Base CRUD complete. Next step is to incorporate which cars and ads are associcated with which users and display them in the views.
+{
     public class UserController : Controller
     {
         private static readonly HttpClient client;

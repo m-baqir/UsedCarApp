@@ -10,7 +10,7 @@ using UsedCarApp.Models.ViewModels;
 using System.Net.Http;
 
 namespace UsedCarApp.Controllers
-{//Base CRUD complete. Next steps are to incorporate which users are associated with which cars and ads.
+{
     public class CarController : Controller
     {
         private static readonly HttpClient client;

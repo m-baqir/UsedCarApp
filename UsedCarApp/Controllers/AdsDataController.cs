@@ -65,9 +65,13 @@ namespace UsedCarApp.Controllers
             }));
             return AdDtos;
         }
-
+        /// <summary>
+        /// lists all ads for a particular car
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>AdDto Object</returns>
         [HttpGet]
-        // GET: api/AdsData/ListAdsforusers
+        // GET: api/AdsData/ListAdsforcar
         public IEnumerable<AdDto> ListAdsforCar(int id)
         {
             List<Ad> Ads = db.Ads.Where(a => a.CarId == id).ToList();

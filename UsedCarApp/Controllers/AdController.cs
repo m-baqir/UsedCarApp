@@ -10,7 +10,7 @@ using System.Web.Script.Serialization;
 using System.Diagnostics;
 
 namespace UsedCarApp.Controllers
-{ /*Base CRUD complete, next step is tie all the views together for a better User experience*/
+{ 
     public class AdController : Controller
     {
         private static readonly HttpClient client;
@@ -33,6 +33,7 @@ namespace UsedCarApp.Controllers
             IEnumerable<AdDto> ads = response.Content.ReadAsAsync<IEnumerable<AdDto>>().Result;
             return View(ads);
         }
+
         /// <summary>
         /// This method presents the specific details of an ad given the ad id
         /// </summary>
@@ -51,16 +52,18 @@ namespace UsedCarApp.Controllers
             
             return View(ViewModel);
         }
+
         /// <summary>
-        /// An empty controller to present errors in case of malfunction in the code
+        /// An empty method to present errors in case of malfunction in the code
         /// </summary>
         /// <returns></returns>
         public ActionResult Error()
         {
             return View();
         }
+
         /// <summary>
-        /// The new controller presents the form elements to the user to create a new ad in the database
+        /// The new method presents the form elements to the user to create a new ad in the database
         /// </summary>
         /// <returns></returns>
         // GET: Ad/Create
@@ -72,7 +75,7 @@ namespace UsedCarApp.Controllers
             HttpResponseMessage response = client.GetAsync(url).Result;
             IEnumerable<Car> carsoptions = response.Content.ReadAsAsync<IEnumerable<Car>>().Result;
             ViewModel.AllCars = carsoptions;
-            //figure out how to return 2 lists to a view
+            
             string url2 = "usersdata/listusers";
             HttpResponseMessage response2 = client.GetAsync(url2).Result;
             IEnumerable<UserDto> useroptions = response2.Content.ReadAsAsync<IEnumerable<UserDto>>().Result;
@@ -80,8 +83,9 @@ namespace UsedCarApp.Controllers
 
             return View(ViewModel);
         }
+
         /// <summary>
-        /// actually creates the Ad object and passes it to the db
+        /// actually creates the Ad object and adds it to the db
         /// </summary>
         /// <param name="Ad"></param>
         /// <returns>executes the CREATE command in the db</returns>
@@ -109,6 +113,7 @@ namespace UsedCarApp.Controllers
             }
                 
         }
+
         /// <summary>
         /// presents the specific ad information in form elements before updating it given the ad id
         /// </summary>
@@ -119,19 +124,19 @@ namespace UsedCarApp.Controllers
         public ActionResult Edit(int id)
         {
             UpdateAd ViewModel = new UpdateAd();
-            
+            //ad information
             string url = "adsdata/findad/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
             Ad SelectedAd = response.Content.ReadAsAsync<Ad>().Result;
             ViewModel.SelectedAd = SelectedAd;
             
             //list of all cars to choose from
-            //this is giving me a headache. keeps giving an error of foreign key constraint when the db is setup properly. still unable to figure out the bug of getting the right car selected in the dropdown
+            
             url = "carsdata/listcars";
             response = client.GetAsync(url).Result;
             IEnumerable<Car> CarOptions = response.Content.ReadAsAsync<IEnumerable<Car>>().Result;
             ViewModel.CarOptions = CarOptions;
-
+            // list of all users to choose from
             url = "usersdata/listusers";
             response = client.GetAsync(url).Result;
             IEnumerable<User> UserOptions = response.Content.ReadAsAsync<IEnumerable<User>>().Result;
