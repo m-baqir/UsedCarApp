@@ -1,6 +1,6 @@
 # UsedCarApp Passion Project
 A database driven app that allows users to post new ads for vehicles they wish to sell.
-So far the app has full CRUD functionality for Cars, Users, and Ads.
+So far the app has full CRUD(Create Read Update Delete) functionality for Cars, Users, and Ads.
 This app has a responsive design and
 There is an additional feature to upload and store images related to ads on the server.
 ---
